@@ -15,7 +15,7 @@ namespace SchoolManagement
             GeneralMethod gm = new GeneralMethod();
             Console.Clear();
             var votes = new List<int>();
-            Queries q = new Queries();
+            TeacherRepository q = new TeacherRepository();
             foreach (var teacher in q.GetTeachers())
             {
                 Console.WriteLine(teacher.Name);

@@ -43,7 +43,7 @@ namespace SchoolManagement
 
             Console.Clear();
             Console.WriteLine("Your teachers are: ");
-            Queries q = new Queries();
+            TeacherRepository q = new TeacherRepository();
             foreach (var PersonDTO in q.MyTeachers(sn))
             {
                 Console.WriteLine(PersonDTO.Name + " " + PersonDTO.Surname);
@@ -70,8 +70,8 @@ namespace SchoolManagement
 
             Console.Clear();
             Console.WriteLine("Your classmates are: ");
-            
-            Queries q = new Queries();
+
+            PupilRepository q = new PupilRepository();
             foreach (var Person2DTO in q.MyMates(classId))
             {
                 if (Person2DTO.Id != ownId)

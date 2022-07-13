@@ -52,7 +52,7 @@ namespace SchoolManagement
             int year = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Write a letter that is currently not used:");
             string letter = Console.ReadLine();
-            Queries q = new Queries();
+            ClassgroupRepository q = new ClassgroupRepository();
             q.SetClassgroup(year, letter);
             Console.Clear();
             Console.WriteLine("The new classgroup has been created.");
@@ -69,7 +69,7 @@ namespace SchoolManagement
                 Console.WriteLine("Retrieving all currentl existing classgroups");
                 Thread.Sleep(1000);
                 Console.Clear();
-                Queries q = new Queries();
+                ClassgroupRepository q = new ClassgroupRepository();
                 foreach (var classgroup in q.GetClassgroups())
                 {
                     Console.WriteLine("Id: " + classgroup.Id + " Year: " + classgroup.Year + " Letter: " + classgroup.Letter);
@@ -93,7 +93,7 @@ namespace SchoolManagement
             Console.WriteLine("Insert the new letter.");
             string letter = Console.ReadLine();
             Classgroup c = new Classgroup(identification, year, letter);
-            Queries q = new Queries();
+            ClassgroupRepository q = new ClassgroupRepository();
             q.UpdateClassgroup(c);
             Console.Clear();
             Console.WriteLine("Classgroup has been updated.");
@@ -106,7 +106,7 @@ namespace SchoolManagement
             Consult();
             Console.WriteLine("Select the id of the classgroup you want to delete.");
             int identification = Convert.ToInt32(Console.ReadLine());
-            Queries q = new Queries();
+            ClassgroupRepository q = new ClassgroupRepository();
             q.DeleteClassgroup(identification);
             Console.WriteLine("Class with id: " + identification + " removed.");
             Thread.Sleep(1000);

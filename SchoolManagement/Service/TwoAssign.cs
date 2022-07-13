@@ -38,7 +38,7 @@ namespace SchoolManagement
                     int cg = Convert.ToInt32(Console.ReadLine());
 
 
-                    Queries q = new Queries();
+                    TeacherRepository q = new TeacherRepository();
                     foreach (var teacher in q.GetTeachers())
                     {
                         if (teacher.Name == na && teacher.Surname == sur)

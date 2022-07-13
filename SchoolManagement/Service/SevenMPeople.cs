@@ -59,7 +59,7 @@ namespace SchoolManagement
             do
             {
                 Console.Clear();
-                Queries searchTeachers = new Queries();
+                TeacherRepository searchTeachers = new TeacherRepository();
                 foreach (var teacher in searchTeachers.GetTeachers())
                 {
                     Console.WriteLine("Id: " + teacher.Id + " Name: " + teacher.Name + " Surname: " + teacher.Surname);
@@ -81,7 +81,7 @@ namespace SchoolManagement
             do
             {
                 Console.Clear();
-                Queries searchPupilss = new Queries();
+                PupilRepository searchPupilss = new PupilRepository();
                 foreach (var pupil in searchPupilss.GetPupils())
                 {
                     Console.WriteLine("Id: " + pupil.Id + " Name: " + pupil.Name + " Surname: " + pupil.Surname);
@@ -112,7 +112,7 @@ namespace SchoolManagement
                 int exp = Convert.ToInt32(Console.ReadLine());
 
 
-                Queries updateTeacher = new Queries();
+                TeacherRepository updateTeacher = new TeacherRepository();
                 updateTeacher.UpdateTeacher(idTeacher, salary, exp);
                 Console.WriteLine("Updated!");
                 
@@ -138,7 +138,9 @@ namespace SchoolManagement
                 Console.WriteLine("Insert the new age: ");
                 int age = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-                Queries updatePupil = new Queries();
+                ClassgroupRepository updatePupil = new ClassgroupRepository();
+                PupilRepository pr = new PupilRepository();
+
                 foreach (var classgroup in updatePupil.GetClassgroups())
                 {
                     Console.WriteLine("Id: " + classgroup.Id + " Year: " + classgroup.Year + " Letter: " + classgroup.Letter);
@@ -147,7 +149,7 @@ namespace SchoolManagement
                 int classId = Convert.ToInt32(Console.ReadLine());
 
                 Console.Clear();
-                updatePupil.UpdatePupil(idPupil, age, classId);
+                pr.UpdatePupil(idPupil, age, classId);
                 Console.WriteLine("Profile updated!");
 
 
@@ -169,7 +171,7 @@ namespace SchoolManagement
                 ConTeacher();
                 Console.WriteLine("Select the id of the teacher you want to remove from the database: ");
                 int idTeacher = Convert.ToInt32(Console.ReadLine());
-                Queries forgetTeacher = new Queries();
+                TeacherRepository forgetTeacher = new TeacherRepository();
                 forgetTeacher.DeleteTeacher(idTeacher);
 
                 Console.Clear();
@@ -193,7 +195,7 @@ namespace SchoolManagement
                 ConPupil();
                 Console.WriteLine("Select the id of the pupil you want to remove from the database: ");
                 int idPupil= Convert.ToInt32(Console.ReadLine());
-                Queries forgetPupil = new Queries();
+                PupilRepository forgetPupil = new PupilRepository();
                 forgetPupil.DeletePupil(idPupil);
 
                 Console.Clear();

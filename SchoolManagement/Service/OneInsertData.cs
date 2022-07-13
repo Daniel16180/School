@@ -69,7 +69,7 @@ namespace SchoolManagement
 
             Teacher t = new Teacher(1, na, sna, sa, ex);
             Console.WriteLine("Printing " + t.Name);
-            Queries q1 = new Queries();
+            TeacherRepository q1 = new TeacherRepository();
             q1.SetTeacher(t);
             Console.WriteLine(t.Name + " was succesfully inserted.");
             Thread.Sleep(1000);
@@ -92,7 +92,7 @@ namespace SchoolManagement
 
             Pupil p = new Pupil(1, na, sna, ag, cgc);
             //Console.WriteLine("Printing " + p.Name);
-            Queries q1 = new Queries();
+            PupilRepository q1 = new PupilRepository();
             q1.SetPupil(p);
             Console.WriteLine(p.Name + " was succesfully inserted.");
             Thread.Sleep(500);

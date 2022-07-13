@@ -20,20 +20,22 @@ namespace SchoolManagement
             Console.WriteLine("Select the second group");
             int sg = Convert.ToInt32(Console.ReadLine());
 
-            Queries q = new Queries();
+            ClassgroupRepository q = new ClassgroupRepository();
             q.Merge(fg, sg);
-            
+            TeacherRepository q2 = new TeacherRepository();
+
+
             Console.WriteLine("Both groups where succesfully merged into one.");
             gm.Wait(1);
 
             Console.WriteLine($"The teachers in the classgroup with id {fg} are bored. Those teachers are: ");
-            foreach (var Person2DTO in q.findUnassignTeachers(fg))
+            foreach (var Person2DTO in q2.findUnassignTeachers(fg))
             {
                 Console.WriteLine("Id: " + Person2DTO.Id + " Name: " + Person2DTO.Name + " Surname: " + Person2DTO.Surname);
             }
             Thread.Sleep(1000);
             Console.WriteLine("Please, reassign them to new classgroups. \n");
-            foreach (var Person2DTO in q.findUnassignTeachers(fg))
+            foreach (var Person2DTO in q2.findUnassignTeachers(fg))
             {
                 gm.ShowClassTeacher();
                 Console.WriteLine($"{Person2DTO.Name} {Person2DTO.Surname} goes to classgroup: ");
@@ -41,7 +43,7 @@ namespace SchoolManagement
                 int newCgId = Convert.ToInt32(Console.ReadLine());
                 if (newCgId > 0 && newCgId < 8 && newCgId != fg)
                 {
-                    q.SetAssignment(newCgId, Person2DTO.Id);
+                    q2.SetAssignment(newCgId, Person2DTO.Id);
                     Console.WriteLine($"{Person2DTO.Name} was assigned.");
                 }
                 else {
@@ -50,7 +52,7 @@ namespace SchoolManagement
                 gm.Wait(1);
             }
 
-            q.unassignTeachers(fg); //since it is prevented to use this var in the new assignment, it is safe to delete those rows.
+            q2.unassignTeachers(fg); //since it is prevented to use this var in the new assignment, it is safe to delete those rows.
 
         }
     }

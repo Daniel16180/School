@@ -9,7 +9,7 @@ using SchoolManagement;
 using SchoolManagementEntity;
 using SchoolManagement.Entities.DTO;
 
-namespace SchoolManagement.Repositories
+namespace SchoolManagementRepo
 {
     class PupilRepository
     {
