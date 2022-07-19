@@ -96,7 +96,7 @@ namespace SchoolManagementRepo
             {
                 conexion.Open();
 
-                string sqlQuery = "UPDATE dbo.Teacher SET director = 'YES' WHERE id = " + winsPos;
+                string sqlQuery = "UPDATE dbo.Teacher SET director = 1 WHERE id = " + winsPos;
 
                 int rowsAffected = conexion.Execute(sqlQuery);
             }
@@ -108,7 +108,7 @@ namespace SchoolManagementRepo
             {
                 conexion.Open();
 
-                string sqlQuery = "UPDATE dbo.Teacher SET director = 'NO'";
+                string sqlQuery = "UPDATE dbo.Teacher SET director = 0";
 
                 int rowsAffected = conexion.Execute(sqlQuery);
             }
