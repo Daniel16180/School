@@ -22,7 +22,7 @@ namespace SchoolManagementRepo
                 conexion.Open();
 
                 //al poner el alias relaciona la clase con la tabla, no hacen falta tags
-                var teacher = conexion.Query<Teacher>("SELECT id as Id, first_name as Name, last_name as Surname, salary as Salary, experience as Experience FROM Teacher");
+                var teacher = conexion.Query<Teacher>("SELECT id as Id, first_name as Name, last_name as Surname, salary as Salary, experience as Experience, director as Director FROM Teacher");
                 return teacher;
             }
         }
@@ -139,6 +139,20 @@ namespace SchoolManagementRepo
                                                                 FROM dbo.Teacher, dbo.Classgroup_Teacher, dbo.Pupil
                                                                 WHERE dbo.Teacher.id = dbo.Classgroup_Teacher.id_teacher AND dbo.Classgroup_Teacher.id_classgroup = dbo.Pupil.id_classgroup AND dbo.Pupil.id =" + idPupil);
                 return personDTOList.ToList().AsReadOnly();
+            }
+        }
+
+        public IEnumerable<Teacher> GetDirector()
+        {
+            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            {
+                conexion.Open();
+
+                //al poner el alias relaciona la clase con la tabla, no hacen falta tags
+                var teacher = conexion.Query<Teacher>(@"SELECT id as Id, first_name as Name, last_name as Surname, salary as Salary, experience as Experience, director as Director
+                                                      FROM Teacher
+                                                      WHERE director= 1");
+                return teacher;
             }
         }
     }

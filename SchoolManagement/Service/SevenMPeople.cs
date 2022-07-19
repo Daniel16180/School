@@ -19,7 +19,8 @@ namespace SchoolManagement
                 Console.WriteLine("4.....Update pupil profile");
                 Console.WriteLine("5...Delete teacher profile");
                 Console.WriteLine("6.....Delete pupil profile");
-                Console.WriteLine("7..................Back \n");
+                Console.WriteLine("7..........Search director");
+                Console.WriteLine("8.....................Back \n");
 
                 menuSelection = Convert.ToInt32(Console.ReadLine());
 
@@ -44,6 +45,9 @@ namespace SchoolManagement
                         ForgetPupil();
                         break;
                     case 7:
+                        SearchDirector();
+                        break;
+                    case 8:
                         menuSelection = 1;
                         break;
                     default:
@@ -208,6 +212,17 @@ namespace SchoolManagement
                     exit = 1;
                 }
             } while (exit == 0);
+        }
+
+        public void SearchDirector() {
+            Console.Clear();
+            TeacherRepository tr = new TeacherRepository();
+            foreach (var teacher in tr.GetDirector())
+            {
+                Console.WriteLine("Name: " + teacher.Name + " Surname: " + teacher.Surname);
+                GeneralMethod gm = new GeneralMethod();
+                gm.Wait(2);
+            }
         }
     }
 }

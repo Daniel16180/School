@@ -67,7 +67,7 @@ namespace SchoolManagement
             Console.WriteLine("Type the experience");
             int ex = Convert.ToInt32(Console.ReadLine());
 
-            Teacher t = new Teacher(1, na, sna, sa, ex);
+            Teacher t = new Teacher(1, na, sna, sa, ex, false);
             Console.WriteLine("Printing " + t.Name);
             TeacherRepository q1 = new TeacherRepository();
             q1.SetTeacher(t);
