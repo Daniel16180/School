@@ -17,63 +17,63 @@ namespace SchoolManagementRepo
 
         public IEnumerable<Classgroup> GetClassgroups()
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
-                var classgroup = conexion.Query<Classgroup>("SELECT id as Id, year as Year, letter as Letter FROM Classgroup");
+                var classgroup = connection.Query<Classgroup>("SELECT id as Id, year as Year, letter as Letter FROM Classgroup");
                 return classgroup;
             }
         }
 
         public void SetClassgroup(int year, string letter)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = "INSERT INTO Classgroup (year, letter) VALUES(" + year + ", '" + letter + "')";
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
         public void UpdateClassgroup(Classgroup c)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = @"UPDATE Classgroup
                                     SET year= " + c.Year + ", letter= '" + c.Letter + "' " +
                                     "WHERE id= " + c.Id;
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
         public void DeleteClassgroup(int identification)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = @"DELETE FROM Classgroup
                                     WHERE id = " + identification;
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void Merge(int firstGroup, int segondGroup)
+        public void Merge(int firstGroup, int secondGroup)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
-                string sqlQuery = "UPDATE Pupil SET id_classgroup = " + segondGroup + " WHERE id_classgroup = " + firstGroup;
+                string sqlQuery = "UPDATE Pupil SET id_classgroup = " + secondGroup + " WHERE id_classgroup = " + firstGroup;
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 

@@ -17,62 +17,62 @@ namespace SchoolManagementRepo
 
         public IEnumerable<Pupil> GetPupils()
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
-                var pupil = conexion.Query<Pupil>("SELECT id as Id, first_name as Name, last_name as Surname, age as Age, id_classgroup as IdClassgroup FROM Pupil");
+                var pupil = connection.Query<Pupil>("SELECT id as Id, first_name as Name, last_name as Surname, age as Age, id_classgroup as IdClassgroup FROM Pupil");
                 return pupil;
             }
         }
 
         public void SetPupil(Pupil p)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = "INSERT INTO Pupil (first_name, last_name, age, id_classgroup) VALUES(@Name, @Surname, @Age, @IdClassgroup)";
 
-                int rowsAffected = conexion.Execute(sqlQuery, p);
+                int rowsAffected = connection.Execute(sqlQuery, p);
             }
         }
 
         public void UpdatePupil(int idPupil, int age, int classId)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = @"UPDATE Pupil
                                     SET age= " + age + ", id_classgroup = " + classId + " " +
                                     "WHERE id= " + idPupil;
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
         public void DeletePupil(int idPupil)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
                 string sqlQuery = @"DELETE FROM Pupil
                                     WHERE id = " + idPupil;
 
-                int rowsAffected = conexion.Execute(sqlQuery);
+                int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
         public IReadOnlyList<Person2DTO> MyMates(int idClass)
         {
-            using (IDbConnection conexion = new SqlConnection(connectionStr))
+            using (IDbConnection connection = new SqlConnection(connectionStr))
             {
-                conexion.Open();
+                connection.Open();
 
 
-                var personDTOList = conexion.Query<Person2DTO>(@"SELECT id as Id, first_name as Name, last_name as Surname FROM dbo.Pupil WHERE id_classgroup = " + idClass);
+                var personDTOList = connection.Query<Person2DTO>(@"SELECT id as Id, first_name as Name, last_name as Surname FROM dbo.Pupil WHERE id_classgroup = " + idClass);
                 return personDTOList.ToList().AsReadOnly();
             }
         }
