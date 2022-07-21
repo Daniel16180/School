@@ -4,8 +4,11 @@ using System.Text;
 
 namespace SchoolManagementEntity
 {
-    public class Teacher : People
+    public class Teacher
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public float Salary { get; set; }
         public int Experience { get; set; }
         public bool Director { get; set; }

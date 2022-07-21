@@ -4,8 +4,11 @@ using System.Text;
 
 namespace SchoolManagementEntity
 {
-    public class Pupil : People
+    public class Pupil 
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public int Age { get; set; }
         public int IdClassgroup { get; set; }
 
