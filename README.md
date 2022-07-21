@@ -1,5 +1,5 @@
 # School Management
-This is a repository for my firt .NET project.
+This is a repository for my fisrt .NET project.
 
 ## Objectives
 
