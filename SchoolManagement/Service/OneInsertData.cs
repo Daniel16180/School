@@ -62,7 +62,7 @@ namespace SchoolManagement
             string sna = Console.ReadLine();
 
             Console.WriteLine("Type the salary");
-            float sa = float.Parse(Console.ReadLine());
+            decimal sa = decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Type the experience");
             int ex = Convert.ToInt32(Console.ReadLine());
