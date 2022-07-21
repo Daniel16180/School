@@ -6,7 +6,7 @@ namespace SchoolManagementEntity
 {
     public class Classgroup //class
     {
-        //atributos los declaro con get y set y los campos sin. Los campos son variables auxiliares para los atributos o clase.
+        //attibutes have get and set, fields not. The fields are auxiliary variables for tha attibutes/class.
         public int Id { get; set; }
         public int Year { get; set; } //1º, 2º, 3º and 4º.
         public string Letter { get; set; }//a or b

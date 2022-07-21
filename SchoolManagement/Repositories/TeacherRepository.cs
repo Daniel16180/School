@@ -21,7 +21,7 @@ namespace SchoolManagementRepo
             {
                 conexion.Open();
 
-                //al poner el alias relaciona la clase con la tabla, no hacen falta tags
+                //using alias relate them to the table, no tags are needed.
                 var teacher = conexion.Query<Teacher>("SELECT id as Id, first_name as Name, last_name as Surname, salary as Salary, experience as Experience, director as Director FROM Teacher");
                 return teacher;
             }
@@ -148,7 +148,6 @@ namespace SchoolManagementRepo
             {
                 conexion.Open();
 
-                //al poner el alias relaciona la clase con la tabla, no hacen falta tags
                 var teacher = conexion.Query<Teacher>(@"SELECT id as Id, first_name as Name, last_name as Surname, salary as Salary, experience as Experience, director as Director
                                                       FROM Teacher
                                                       WHERE director= 1");
