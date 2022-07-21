@@ -10,15 +10,15 @@ namespace SchoolManagementEntity
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
-        public int IdClassgroup { get; set; }
+        public int ClassGroupId { get; set; }
 
-        public Pupil(int id, string name, string surname, int age, int idClassgroup)
+        public Pupil(int id, string name, string surname, int age, int classGroupId)
         {
             Id = id;
             Name = name;
             Surname = surname;
             Age = age;
-            IdClassgroup = idClassgroup;
+            ClassGroupId = classGroupId;
         }
     }
 }

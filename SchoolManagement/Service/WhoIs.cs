@@ -64,7 +64,7 @@ namespace SchoolManagement
             Console.WriteLine("6.....3ºB");
             Console.WriteLine("7.....4ºA");
             Console.WriteLine("8.....4ºB \n");
-            int classId = Convert.ToInt32(Console.ReadLine());
+            int idClass = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Insert your own id: ");
             int ownId = Convert.ToInt32(Console.ReadLine());
 
@@ -72,7 +72,7 @@ namespace SchoolManagement
             Console.WriteLine("Your classmates are: ");
 
             PupilRepository q = new PupilRepository();
-            foreach (var Person2DTO in q.MyMates(classId))
+            foreach (var Person2DTO in q.MyMates(idClass))
             {
                 if (Person2DTO.Id != ownId)
                 {

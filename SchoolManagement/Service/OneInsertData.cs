@@ -49,8 +49,6 @@ namespace SchoolManagement
 
                 }
             } while (menuInsert == 0);
-            //INSERT TEACHER
-            //INSERT PUPIL
         }
 
         private void InsertTeacher() {

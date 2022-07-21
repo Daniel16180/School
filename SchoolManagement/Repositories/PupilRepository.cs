@@ -21,7 +21,7 @@ namespace SchoolManagementRepo
             {
                 connection.Open();
 
-                var pupil = connection.Query<Pupil>("SELECT id as Id, first_name as Name, last_name as Surname, age as Age, id_classgroup as IdClassgroup FROM Pupil");
+                var pupil = connection.Query<Pupil>("SELECT id as Id, first_name as Name, last_name as Surname, age as Age, id_classgroup as ClassGroupId FROM Pupil");
                 return pupil;
             }
         }
@@ -32,7 +32,7 @@ namespace SchoolManagementRepo
             {
                 connection.Open();
 
-                string sqlQuery = "INSERT INTO Pupil (first_name, last_name, age, id_classgroup) VALUES(@Name, @Surname, @Age, @IdClassgroup)";
+                string sqlQuery = "INSERT INTO Pupil (first_name, last_name, age, id_classgroup) VALUES(@Name, @Surname, @Age, @ClassGroupId)";
 
                 int rowsAffected = connection.Execute(sqlQuery, p);
             }
@@ -65,14 +65,14 @@ namespace SchoolManagementRepo
             }
         }
 
-        public IReadOnlyList<Person2DTO> MyMates(int idClass)
+        public IReadOnlyList<Person2DTO> MyMates(int classId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
 
-                var personDTOList = connection.Query<Person2DTO>(@"SELECT id as Id, first_name as Name, last_name as Surname FROM dbo.Pupil WHERE id_classgroup = " + idClass);
+                var personDTOList = connection.Query<Person2DTO>(@"SELECT id as Id, first_name as Name, last_name as Surname FROM dbo.Pupil WHERE id_classgroup = " + classId);
                 return personDTOList.ToList().AsReadOnly();
             }
         }

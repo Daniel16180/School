@@ -89,7 +89,7 @@ namespace SchoolManagement
                 foreach (var pupil in searchPupilss.GetPupils())
                 {
                     Console.WriteLine("Id: " + pupil.Id + " Name: " + pupil.Name + " Surname: " + pupil.Surname);
-                    Console.WriteLine("Age: " + pupil.Age + " Classgroup id: " + pupil.IdClassgroup + "\n");
+                    Console.WriteLine("Age: " + pupil.Age + " Classgroup id: " + pupil.ClassGroupId + "\n");
 
                 }
                 Console.WriteLine("Write \"c\" to continue.");
