@@ -11,17 +11,17 @@ using SchoolManagementEntity;
 
 namespace SchoolManagementRepo
 {
-    class ClassgroupRepository
+    class ClassGroupRepository
     {
         private string connectionStr = Initialize.GetConnectionString();
 
-        public IEnumerable<Classgroup> GetClassgroups()
+        public IEnumerable<ClassGroup> GetClassgroups()
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
-                var classgroup = connection.Query<Classgroup>("SELECT id as Id, year as Year, letter as Letter FROM Classgroup");
+                var classgroup = connection.Query<ClassGroup>("SELECT id as Id, year as Year, letter as Letter FROM Classgroup");
                 return classgroup;
             }
         }
@@ -38,7 +38,7 @@ namespace SchoolManagementRepo
             }
         }
 
-        public void UpdateClassgroup(Classgroup c)
+        public void UpdateClassgroup(ClassGroup c)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {

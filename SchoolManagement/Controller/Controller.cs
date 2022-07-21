@@ -11,7 +11,7 @@ namespace SchoolManagement
         public void Start() {
             int menuExit = 0;
             int menuSelection = 0;
-            Classgroup cg1 = new Classgroup(1, 3, "a");
+            ClassGroup cg1 = new ClassGroup(1, 3, "a");
 
             //START
             Console.WriteLine("Welcome to School Management!");

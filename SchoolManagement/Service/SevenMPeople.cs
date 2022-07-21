@@ -142,7 +142,7 @@ namespace SchoolManagement
                 Console.WriteLine("Insert the new age: ");
                 int age = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-                ClassgroupRepository updatePupil = new ClassgroupRepository();
+                ClassGroupRepository updatePupil = new ClassGroupRepository();
                 PupilRepository pr = new PupilRepository();
 
                 foreach (var classgroup in updatePupil.GetClassgroups())

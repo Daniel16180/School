@@ -20,7 +20,7 @@ namespace SchoolManagement
             Console.WriteLine("Select the second group");
             int sg = Convert.ToInt32(Console.ReadLine());
 
-            ClassgroupRepository q = new ClassgroupRepository();
+            ClassGroupRepository q = new ClassGroupRepository();
             q.Merge(fg, sg);
             TeacherRepository q2 = new TeacherRepository();
 
