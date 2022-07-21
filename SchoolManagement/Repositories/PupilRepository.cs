@@ -7,7 +7,7 @@ using System.Text;
 using System.Linq;
 using SchoolManagement;
 using SchoolManagementEntity;
-using SchoolManagement.Entities.DTO;
+
 
 namespace SchoolManagementRepo
 {

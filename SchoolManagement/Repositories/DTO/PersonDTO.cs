@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.Entities.DTO
+namespace SchoolManagementRepo
 {
     class PersonDTO
     {
