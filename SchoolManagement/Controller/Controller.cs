@@ -19,7 +19,7 @@ namespace SchoolManagement
             Console.Clear();
 
             //MAIN MENU
-            do
+            while (menuExit == 0)
             {
                 Console.Clear();
                 Console.WriteLine("MAIN MENU");
@@ -82,9 +82,7 @@ namespace SchoolManagement
                             break;
                     }
                 }
-
-            } while (menuExit == 0);
-   
+            }
         }
     }
 }

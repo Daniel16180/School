@@ -10,7 +10,7 @@ namespace SchoolManagement
     {
         public void MPeople() {
             int menuSelection = 0;
-            do
+            while (menuSelection == 0)
             {
                 Console.Clear();
                 Console.WriteLine("1.........Consult teachers");
@@ -54,13 +54,13 @@ namespace SchoolManagement
                         Console.WriteLine("Invalid option.");
                         break;
                 }
-            } while (menuSelection == 0);
+            }
         }
 
         private void ConTeacher() {
             int exit = 0;
             string continuation = "c";
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 TeacherRepository searchTeachers = new TeacherRepository();
@@ -76,13 +76,13 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);   
+            } 
         }
 
         private void ConPupil()
         {
             int exit = 0;
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 PupilRepository searchPupilss = new PupilRepository();
@@ -98,20 +98,20 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);
+            }
         }
 
         private void ChangeTeacher()
         {
             int exit = 0;
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 ConTeacher();
                 Console.WriteLine("Select the id of the teacher whose info you want to update: ");
                 int idTeacher = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Insert the new salary: ");
-                float salary= float.Parse(Console.ReadLine());
+                float salary = float.Parse(Console.ReadLine());
                 Console.WriteLine("Insert the new experience: ");
                 int exp = Convert.ToInt32(Console.ReadLine());
 
@@ -119,7 +119,7 @@ namespace SchoolManagement
                 TeacherRepository updateTeacher = new TeacherRepository();
                 updateTeacher.UpdateTeacher(idTeacher, salary, exp);
                 Console.WriteLine("Updated!");
-                
+
 
                 Console.WriteLine("Write \"c\" to continue.");
                 string continuation = Console.ReadLine();
@@ -127,13 +127,13 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);
+            }
         }
 
         private void ChangePupil()
         {
             int exit = 0;
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 ConPupil();
@@ -163,13 +163,13 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);
+            }
         }
 
         private void ForgetTeacher()
         {
             int exit = 0;
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 ConTeacher();
@@ -187,18 +187,18 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);
+            }
         }
 
         private void ForgetPupil()
         {
             int exit = 0;
-            do
+            while (exit == 0)
             {
                 Console.Clear();
                 ConPupil();
                 Console.WriteLine("Select the id of the pupil you want to remove from the database: ");
-                int idPupil= Convert.ToInt32(Console.ReadLine());
+                int idPupil = Convert.ToInt32(Console.ReadLine());
                 PupilRepository forgetPupil = new PupilRepository();
                 forgetPupil.DeletePupil(idPupil);
 
@@ -211,7 +211,7 @@ namespace SchoolManagement
                 {
                     exit = 1;
                 }
-            } while (exit == 0);
+            }
         }
 
         public void SearchDirector() {

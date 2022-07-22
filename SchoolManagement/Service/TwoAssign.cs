@@ -11,7 +11,7 @@ namespace SchoolManagement
         public void AssignTeacher() {
             int exitMenu = 0;
             Console.Clear();
-            do
+            while (exitMenu == 0)
             {
                 Console.WriteLine("Write the teacher´s name or type 1 to go back to the Main Menu.");
                 string na = Console.ReadLine();
@@ -52,7 +52,7 @@ namespace SchoolManagement
 
                     }
                 }
-            } while (exitMenu == 0);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SchoolManagement
         int menuSelection = 0;
         public void ManageClassgroups()
         {
-            do
+            while (menuSelection == 0)
             {
                 Console.Clear();
                 Console.WriteLine("1..............Create classgroup");
@@ -43,7 +43,7 @@ namespace SchoolManagement
                     default:
                         break;
                 }
-            } while (menuSelection == 0);
+            }
         }
 
         private void Create() {
@@ -63,7 +63,7 @@ namespace SchoolManagement
 
         private void Consult() {
             int consult = 0;
-            do
+            while (consult == 0)
             {
                 Console.Clear();
                 Console.WriteLine("Retrieving all currentl existing classgroups");
@@ -80,7 +80,7 @@ namespace SchoolManagement
                 {
                     consult = 1;
                 }
-            } while (consult == 0);
+            }
         }
 
         private void Change() {

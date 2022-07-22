@@ -13,7 +13,7 @@ namespace SchoolManagement
         public void MenuInsert()
         {
             int menuInsert = 0;
-            do
+            while (menuInsert == 0)
             {
                 Console.Clear();
                 Console.WriteLine("1........Insert teacher");
@@ -48,7 +48,7 @@ namespace SchoolManagement
                     }
 
                 }
-            } while (menuInsert == 0);
+            }
         }
 
         private void InsertTeacher() {

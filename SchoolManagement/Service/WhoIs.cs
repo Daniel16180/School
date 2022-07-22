@@ -10,8 +10,7 @@ namespace SchoolManagement
     {
         public void Who() {
             int menuExit = 0;
-
-            do
+            while (menuExit == 0)
             {
                 Console.Clear();
                 Console.WriteLine("1...Who are my teachers?");
@@ -34,7 +33,7 @@ namespace SchoolManagement
                         Console.WriteLine("Option unavailable.");
                         break;
                 }
-            } while (menuExit == 0);
+            }
         }
 
         private void MyTeachers() {
