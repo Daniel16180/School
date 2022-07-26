@@ -1,3 +1,4 @@
 ﻿.vs/scholmanagement/
 SchoolManagement/bin/Debug/netcoreapp3.1/
 SchoolManagement/obj/
+SchoolManagement/appsettings.json
