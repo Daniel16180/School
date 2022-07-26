@@ -26,7 +26,7 @@ namespace SchoolManagementRepo
             }
         }
 
-        public void SetPupil(Pupil p)
+        public void SetPupil(Pupil pupil)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
@@ -34,11 +34,11 @@ namespace SchoolManagementRepo
 
                 string sqlQuery = "INSERT INTO Pupil (first_name, last_name, age, id_classgroup) VALUES(@Name, @Surname, @Age, @ClassGroupId)";
 
-                int rowsAffected = connection.Execute(sqlQuery, p);
+                int rowsAffected = connection.Execute(sqlQuery, pupil);
             }
         }
 
-        public void UpdatePupil(int idPupil, int age, int classId)
+        public void UpdatePupil(int pupilId, int age, int classId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
@@ -46,20 +46,20 @@ namespace SchoolManagementRepo
 
                 string sqlQuery = @"UPDATE Pupil
                                     SET age= " + age + ", id_classgroup = " + classId + " " +
-                                    "WHERE id= " + idPupil;
+                                    "WHERE id= " + pupilId;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void DeletePupil(int idPupil)
+        public void DeletePupil(int pupilId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
                 string sqlQuery = @"DELETE FROM Pupil
-                                    WHERE id = " + idPupil;
+                                    WHERE id = " + pupilId;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }

@@ -25,9 +25,8 @@ namespace SchoolManagement.Service
             int classGroupCode = Convert.ToInt32(Console.ReadLine());
 
             Pupil pupil = new Pupil(1, name, surname, age, classGroupCode);
-            //Console.WriteLine("Printing " + p.Name);
-            PupilRepository query1 = new PupilRepository();
-            query1.SetPupil(pupil);
+            PupilRepository pupilRepository = new PupilRepository();
+            pupilRepository.SetPupil(pupil);
             Console.WriteLine(pupil.Name + " was succesfully inserted.");
             Thread.Sleep(500);
         }
@@ -37,19 +36,16 @@ namespace SchoolManagement.Service
             while (exit == 0)
             {
                 Console.Clear();
-                PupilRepository searchPupilss = new PupilRepository();
-                foreach (var pupil in searchPupilss.GetPupils())
+                PupilRepository pupilRepository = new PupilRepository();
+                foreach (var pupil in pupilRepository.GetPupils())
                 {
                     Console.WriteLine("Id: " + pupil.Id + " Name: " + pupil.Name + " Surname: " + pupil.Surname);
                     Console.WriteLine("Age: " + pupil.Age + " Classgroup id: " + pupil.ClassGroupId + "\n");
 
                 }
-                Console.WriteLine("Write \"c\" to continue.");
+                Console.WriteLine("Press any key to continue.");
                 string continuation = Console.ReadLine();
-                if (continuation == "c")
-                {
-                    exit = 1;
-                }
+                exit = 1;
             }
         }
         public void Update()
@@ -64,10 +60,10 @@ namespace SchoolManagement.Service
                 Console.WriteLine("Insert the new age: ");
                 int age = Convert.ToInt32(Console.ReadLine());
                 Console.Clear();
-                ClassGroupRepository updatePupil = new ClassGroupRepository();
-                PupilRepository pr = new PupilRepository();
+                ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+                PupilRepository pupilRepository = new PupilRepository();
 
-                foreach (var classgroup in updatePupil.GetClassgroups())
+                foreach (var classgroup in classGroupRepository.GetClassgroups())
                 {
                     Console.WriteLine("Id: " + classgroup.Id + " Year: " + classgroup.Year + " Letter: " + classgroup.Letter);
                 }
@@ -75,16 +71,13 @@ namespace SchoolManagement.Service
                 int classId = Convert.ToInt32(Console.ReadLine());
 
                 Console.Clear();
-                pr.UpdatePupil(idPupil, age, classId);
+                pupilRepository.UpdatePupil(idPupil, age, classId);
                 Console.WriteLine("Profile updated!");
 
 
-                Console.WriteLine("Write \"c\" to continue.");
+                Console.WriteLine("Press any key to continue.");
                 string continuation = Console.ReadLine();
-                if (continuation == "c")
-                {
-                    exit = 1;
-                }
+                exit = 1;
             }
         }
         public void Delete()
@@ -95,9 +88,9 @@ namespace SchoolManagement.Service
                 Console.Clear();
                 ReadAll();
                 Console.WriteLine("Select the id of the pupil you want to remove from the database: ");
-                int idPupil = Convert.ToInt32(Console.ReadLine());
-                PupilRepository forgetPupil = new PupilRepository();
-                forgetPupil.DeletePupil(idPupil);
+                int pupilId = Convert.ToInt32(Console.ReadLine());
+                PupilRepository pupilRepository = new PupilRepository();
+                pupilRepository.DeletePupil(pupilId);
 
                 Console.Clear();
                 Console.WriteLine("Success!");
@@ -108,7 +101,7 @@ namespace SchoolManagement.Service
             }
         }
 
-        public void FindMates()
+        public void FindMates() //change
         {
             Console.WriteLine("Select your classgroup: ");
             Console.WriteLine("1.....1ºA");
@@ -126,8 +119,8 @@ namespace SchoolManagement.Service
             Console.Clear();
             Console.WriteLine("Your classmates are: ");
 
-            PupilRepository query = new PupilRepository();
-            foreach (var Person2DTO in query.MyMates(classId))
+            PupilRepository pupilRepository = new PupilRepository();
+            foreach (var Person2DTO in pupilRepository.MyMates(classId))
             {
                 if (Person2DTO.Id != ownId)
                 {
@@ -146,8 +139,8 @@ namespace SchoolManagement.Service
 
             Console.Clear();
             Console.WriteLine("Your teachers are: ");
-            TeacherRepository query = new TeacherRepository();
-            foreach (var PersonDTO in query.MyTeachers(studentNumber))
+            TeacherRepository teacherRepository = new TeacherRepository();
+            foreach (var PersonDTO in teacherRepository.MyTeachers(studentNumber))
             {
                 Console.WriteLine(PersonDTO.Name + " " + PersonDTO.Surname);
                 Thread.Sleep(500);

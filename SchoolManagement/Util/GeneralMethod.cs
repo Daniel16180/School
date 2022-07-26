@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using SchoolManagementRepo;
 
 namespace SchoolManagement
 {
     public class GeneralMethod
     {
-        public void ShowClassTeacher() {
-            Console.WriteLine("1.....1ºA");
-            Console.WriteLine("2.....1ºB");
-            Console.WriteLine("3.....2ºA");
-            Console.WriteLine("4.....2ºB");
-            Console.WriteLine("5.....3ºA");
-            Console.WriteLine("6.....3ºB");
-            Console.WriteLine("7.....4ºA");
-            Console.WriteLine("8.....4ºB \n");
+        public void ShowClassGroupTable() {
+            ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+            foreach (var classGroup in classGroupRepository.GetClassgroups())
+            {
+                Console.WriteLine("Id: " + classGroup.Id + " Year: " + classGroup.Year + "Letter: " + classGroup.Letter);
+            }
+            Console.WriteLine(" ");
         }
 
         public void Wait(int secs)

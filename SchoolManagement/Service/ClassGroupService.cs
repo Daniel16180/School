@@ -16,8 +16,8 @@ namespace SchoolManagement.Service
             int year = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Write a letter that is currently not used:");
             string letter = Console.ReadLine();
-            ClassGroupRepository query = new ClassGroupRepository();
-            query.SetClassgroup(year, letter);
+            ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+            classGroupRepository.SetClassgroup(year, letter);
             Console.Clear();
             Console.WriteLine("The new classgroup has been created.");
             Thread.Sleep(1000);
@@ -32,8 +32,8 @@ namespace SchoolManagement.Service
                 Console.WriteLine("Retrieving all currentl existing classgroups");
                 Thread.Sleep(1000);
                 Console.Clear();
-                ClassGroupRepository query = new ClassGroupRepository();
-                foreach (var classgroup in query.GetClassgroups())
+                ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+                foreach (var classgroup in classGroupRepository.GetClassgroups())
                 {
                     Console.WriteLine("Id: " + classgroup.Id + " Year: " + classgroup.Year + " Letter: " + classgroup.Letter);
                 }
@@ -53,8 +53,8 @@ namespace SchoolManagement.Service
             Console.WriteLine("Insert the new letter.");
             string letter = Console.ReadLine();
             ClassGroup classGroup = new ClassGroup(identification, year, letter);
-            ClassGroupRepository query = new ClassGroupRepository();
-            query.UpdateClassgroup(classGroup);
+            ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+            classGroupRepository.UpdateClassgroup(classGroup);
             Console.Clear();
             Console.WriteLine("Classgroup has been updated.");
             Thread.Sleep(1000);
@@ -65,8 +65,8 @@ namespace SchoolManagement.Service
             Consult();
             Console.WriteLine("Select the id of the classgroup you want to delete.");
             int identification = Convert.ToInt32(Console.ReadLine());
-            ClassGroupRepository query = new ClassGroupRepository();
-            query.DeleteClassgroup(identification);
+            ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+            classGroupRepository.DeleteClassgroup(identification);
             Console.WriteLine("Class with id: " + identification + " removed.");
             Thread.Sleep(1000);
         }
@@ -74,8 +74,7 @@ namespace SchoolManagement.Service
         {
             Console.Clear();
             GeneralMethod generalMethod = new GeneralMethod();
-            generalMethod.ShowClassTeacher();
-            generalMethod.Wait(2);
+            generalMethod.ShowClassGroupTable();
 
             Console.WriteLine("Select the group you want to merge into a second one");
             int firstGroup = Convert.ToInt32(Console.ReadLine());
@@ -83,30 +82,30 @@ namespace SchoolManagement.Service
             Console.WriteLine("Select the second group");
             int secondGroup = Convert.ToInt32(Console.ReadLine());
 
-            ClassGroupRepository query1 = new ClassGroupRepository();
-            query1.Merge(firstGroup, secondGroup);
-            TeacherRepository query2 = new TeacherRepository();
+            ClassGroupRepository classGroupRepository = new ClassGroupRepository();
+            classGroupRepository.Merge(firstGroup, secondGroup);
+            TeacherRepository teacherRepository = new TeacherRepository();
 
 
             Console.WriteLine("Both groups where succesfully merged into one.");
             generalMethod.Wait(1);
 
             Console.WriteLine($"The teachers in the classgroup with id {firstGroup} are bored. Those teachers are: ");
-            foreach (var Person2DTO in query2.findUnassignTeachers(firstGroup))
+            foreach (var Person2DTO in teacherRepository.findUnassignTeachers(firstGroup))
             {
                 Console.WriteLine("Id: " + Person2DTO.Id + " Name: " + Person2DTO.Name + " Surname: " + Person2DTO.Surname);
             }
             Thread.Sleep(1000);
             Console.WriteLine("Please, reassign them to new classgroups. \n");
-            foreach (var Person2DTO in query2.findUnassignTeachers(firstGroup))
+            foreach (var Person2DTO in teacherRepository.findUnassignTeachers(firstGroup))
             {
-                generalMethod.ShowClassTeacher();
+                generalMethod.ShowClassGroupTable();
                 Console.WriteLine($"{Person2DTO.Name} {Person2DTO.Surname} goes to classgroup: ");
                 Console.WriteLine("(Insert classgroup id)");
-                int newCgId = Convert.ToInt32(Console.ReadLine());
-                if (newCgId > 0 && newCgId < 8 && newCgId != firstGroup)
+                int newClassGroupId = Convert.ToInt32(Console.ReadLine());
+                if (newClassGroupId > 0 && newClassGroupId < 8 && newClassGroupId != firstGroup)
                 {
-                    query2.SetAssignment(newCgId, Person2DTO.Id);
+                    teacherRepository.SetAssignment(newClassGroupId, Person2DTO.Id);
                     Console.WriteLine($"{Person2DTO.Name} was assigned.");
                 }
                 else
@@ -116,7 +115,7 @@ namespace SchoolManagement.Service
                 generalMethod.Wait(1);
             }
 
-            query2.unassignTeachers(firstGroup); //since it is prevented to use this var in the new assignment, it is safe to delete those rows.
+            teacherRepository.unassignTeachers(firstGroup); //since it is prevented to use this var in the new assignment, it is safe to delete those rows.
         }
     }
 }

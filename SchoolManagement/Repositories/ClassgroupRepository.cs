@@ -38,15 +38,15 @@ namespace SchoolManagementRepo
             }
         }
 
-        public void UpdateClassgroup(ClassGroup c)
+        public void UpdateClassgroup(ClassGroup classGroup)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
                 string sqlQuery = @"UPDATE Classgroup
-                                    SET year= " + c.Year + ", letter= '" + c.Letter + "' " +
-                                    "WHERE id= " + c.Id;
+                                    SET year= " + classGroup.Year + ", letter= '" + classGroup.Letter + "' " +
+                                    "WHERE id= " + classGroup.Id;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }

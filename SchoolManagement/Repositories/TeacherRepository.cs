@@ -27,7 +27,7 @@ namespace SchoolManagementRepo
             }
         }
 
-        public void SetTeacher(Teacher t)
+        public void SetTeacher(Teacher teacher)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
@@ -35,68 +35,68 @@ namespace SchoolManagementRepo
 
                 string sqlQuery = "INSERT INTO Teacher (first_name, last_name, salary, experience) VALUES(@Name, @Surname, @Salary, @Experience)";
 
-                int rowsAffected = connection.Execute(sqlQuery, t);
+                int rowsAffected = connection.Execute(sqlQuery, teacher);
             }
         }
 
-        public void UpdateTeacher(int idTeacher, float salary, int exp)
+        public void UpdateTeacher(int teacherId, float salary, int experience)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
                 string sqlQuery = @"UPDATE Teacher
-                                    SET salary= " + salary + ", experience = " + exp + " " +
-                                    "WHERE id= " + idTeacher;
+                                    SET salary= " + salary + ", experience = " + experience + " " +
+                                    "WHERE id= " + teacherId;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void DeleteTeacher(int idTeacher)
+        public void DeleteTeacher(int TeacherId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
                 string sqlQuery = @"DELETE FROM Teacher
-                                    WHERE id = " + idTeacher;
+                                    WHERE id = " + TeacherId;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void SetAssignment(int idClasgroup, int idTeacher)
+        public void SetAssignment(int idClasgroup, int teacherId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
-                string sqlQuery = "INSERT INTO Classgroup_Teacher (id_classgroup, id_teacher) VALUES(" + idClasgroup + ", " + idTeacher + ")";
+                string sqlQuery = "INSERT INTO Classgroup_Teacher (id_classgroup, id_teacher) VALUES(" + idClasgroup + ", " + teacherId + ")";
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void unassignTeachers(int fg)
+        public void unassignTeachers(int firstGroup)
         { //fg=first group, the one without pupils
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
-                string sqlQuery = "DELETE FROM Classgroup_Teacher WHERE id_classgroup = " + fg;
+                string sqlQuery = "DELETE FROM Classgroup_Teacher WHERE id_classgroup = " + firstGroup;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
         }
 
-        public void setDirector(int winsPos)
+        public void setDirector(int winnerPosition)
         { //fg=first group, the one without pupils
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
 
-                string sqlQuery = "UPDATE dbo.Teacher SET director = 1 WHERE id = " + winsPos;
+                string sqlQuery = "UPDATE dbo.Teacher SET director = 1 WHERE id = " + winnerPosition;
 
                 int rowsAffected = connection.Execute(sqlQuery);
             }
@@ -114,7 +114,7 @@ namespace SchoolManagementRepo
             }
         }
 
-        public IReadOnlyList<Person2DTO> findUnassignTeachers(int fg)
+        public IReadOnlyList<Person2DTO> findUnassignTeachers(int firstGroup)
         { //fg=first group, the one without pupils
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
@@ -122,13 +122,13 @@ namespace SchoolManagementRepo
 
                 var Person2DTOList = connection.Query<Person2DTO>(@"SELECT dbo.Teacher.id as Id, dbo.Teacher.first_name as Name, dbo.Teacher.last_name as Surname
                                   FROM dbo.Teacher, dbo.Classgroup_Teacher
-                                  WHERE dbo.Classgroup_Teacher.id_teacher = dbo.Teacher.id AND  dbo.Classgroup_Teacher.id_classgroup = " + fg);
+                                  WHERE dbo.Classgroup_Teacher.id_teacher = dbo.Teacher.id AND  dbo.Classgroup_Teacher.id_classgroup = " + firstGroup);
 
                 return Person2DTOList.ToList().AsReadOnly();
             }
         }
 
-        public IReadOnlyList<PersonDTO> MyTeachers(int idPupil)
+        public IReadOnlyList<PersonDTO> MyTeachers(int pupilId)
         {
             using (IDbConnection connection = new SqlConnection(connectionStr))
             {
@@ -137,7 +137,7 @@ namespace SchoolManagementRepo
 
                 var personDTOList = connection.Query<PersonDTO>(@"SELECT dbo.Teacher.first_name as Name, dbo.Teacher.last_name as Surname 
                                                                 FROM dbo.Teacher, dbo.Classgroup_Teacher, dbo.Pupil
-                                                                WHERE dbo.Teacher.id = dbo.Classgroup_Teacher.id_teacher AND dbo.Classgroup_Teacher.id_classgroup = dbo.Pupil.id_classgroup AND dbo.Pupil.id =" + idPupil);
+                                                                WHERE dbo.Teacher.id = dbo.Classgroup_Teacher.id_teacher AND dbo.Classgroup_Teacher.id_classgroup = dbo.Pupil.id_classgroup AND dbo.Pupil.id =" + pupilId);
                 return personDTOList.ToList().AsReadOnly();
             }
         }

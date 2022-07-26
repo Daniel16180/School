@@ -47,12 +47,9 @@ namespace SchoolManagement.Service
                     Console.WriteLine("Salary: " + teacher.Salary + " Experience: " + teacher.Experience + "\n");
 
                 }
-                Console.WriteLine("Write \"c\" to continue.");
+                Console.WriteLine("Press any key to continue.");
                 continuation = Console.ReadLine();
-                if (continuation == "c")
-                {
-                    exit = 1;
-                }
+                exit = 1;
             }
         }
         public void Update()
@@ -70,8 +67,8 @@ namespace SchoolManagement.Service
                 int experience = Convert.ToInt32(Console.ReadLine());
 
 
-                TeacherRepository updateTeacher = new TeacherRepository();
-                updateTeacher.UpdateTeacher(teacherId, salary, experience);
+                TeacherRepository teacherRepository = new TeacherRepository();
+                teacherRepository.UpdateTeacher(teacherId, salary, experience);
                 Console.WriteLine("Updated!");
 
 
@@ -89,8 +86,8 @@ namespace SchoolManagement.Service
                 ReadAll();
                 Console.WriteLine("Select the id of the teacher you want to remove from the database: ");
                 int teacherId = Convert.ToInt32(Console.ReadLine());
-                TeacherRepository forgetTeacher = new TeacherRepository();
-                forgetTeacher.DeleteTeacher(teacherId);
+                TeacherRepository teacherRepository = new TeacherRepository();
+                teacherRepository.DeleteTeacher(teacherId);
 
                 Console.Clear();
                 Console.WriteLine("Success!");
@@ -161,7 +158,7 @@ namespace SchoolManagement.Service
                     string surname = Console.ReadLine();
                     Console.Clear();
 
-                    Console.WriteLine("Select the classgroup to assign");
+                    Console.WriteLine("Select the classgroup to assign"); //change
                     Console.WriteLine("1.....1ºA");
                     Console.WriteLine("2.....1ºB");
                     Console.WriteLine("3.....2ºA");
@@ -173,13 +170,13 @@ namespace SchoolManagement.Service
                     int classGroup = Convert.ToInt32(Console.ReadLine());
 
 
-                    TeacherRepository query = new TeacherRepository();
-                    foreach (var teacher in query.GetTeachers())
+                    TeacherRepository teacherRepository = new TeacherRepository();
+                    foreach (var teacher in teacherRepository.GetTeachers())
                     {
                         if (teacher.Name == name && teacher.Surname == surname)
                         {
                             int idTeacher = teacher.Id;
-                            query.SetAssignment(classGroup, idTeacher);
+                            teacherRepository.SetAssignment(classGroup, idTeacher);
                             Console.WriteLine("Done!");
                             Thread.Sleep(500);
                             Console.Clear();
