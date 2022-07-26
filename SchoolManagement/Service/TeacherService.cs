@@ -158,15 +158,9 @@ namespace SchoolManagement.Service
                     string surname = Console.ReadLine();
                     Console.Clear();
 
-                    Console.WriteLine("Select the classgroup to assign"); //change
-                    Console.WriteLine("1.....1ºA");
-                    Console.WriteLine("2.....1ºB");
-                    Console.WriteLine("3.....2ºA");
-                    Console.WriteLine("4.....2ºB");
-                    Console.WriteLine("5.....3ºA");
-                    Console.WriteLine("6.....3ºB");
-                    Console.WriteLine("7.....4ºA");
-                    Console.WriteLine("8.....4ºB");
+                    Console.WriteLine("Select the classgroup id to assign"); 
+                    GeneralMethod generalMethod = new GeneralMethod();
+                    generalMethod.ShowClassGroupTable();
                     int classGroup = Convert.ToInt32(Console.ReadLine());
 
 

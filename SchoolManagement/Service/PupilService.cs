@@ -101,17 +101,13 @@ namespace SchoolManagement.Service
             }
         }
 
-        public void FindMates() //change
+        public void FindMates() 
         {
-            Console.WriteLine("Select your classgroup: ");
-            Console.WriteLine("1.....1ºA");
-            Console.WriteLine("2.....1ºB");
-            Console.WriteLine("3.....2ºA");
-            Console.WriteLine("4.....2ºB");
-            Console.WriteLine("5.....3ºA");
-            Console.WriteLine("6.....3ºB");
-            Console.WriteLine("7.....4ºA");
-            Console.WriteLine("8.....4ºB \n");
+            Console.Clear();
+            Console.WriteLine("Select your classgroup id: ");
+            GeneralMethod generalMethod = new GeneralMethod();
+            generalMethod.ShowClassGroupTable();
+            
             int classId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Insert your own id: ");
             int ownId = Convert.ToInt32(Console.ReadLine());
